@@ -1,7 +1,12 @@
+<script setup>
+</script>
+
 <template>
-  darko
+  <Hero />
+  <ZakaziteCas />
 </template>
 
-<script setup>
-const { data } = useFetch('/api/get-users')
-</script>
+<style scoped>
+</style>
+
+
