@@ -12,6 +12,10 @@
   font-family: 'Raleway', Arial;
 }
 
+html {
+  scroll-padding-top: 76px;
+}
+
 html, body {
   overflow-x: hidden;
 }

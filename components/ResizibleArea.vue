@@ -1,16 +1,19 @@
 <script setup>
   const props = defineProps(['nameForAccessability'])
-  console.log(props.nameForAccessability)
-  const area = ref(null)
+  const emit = defineEmits(['input'])
 
-  const resize = () => {
-    console.log(area.offsetHeight, ' ', area.scrollHeight)
+  const area = ref(null)
+  const text = ref('')
+
+  const handleInput = () => {
     if(area.value.offsetHeight < area.value.scrollHeight) {
       area.value.style.height = (area.value.scrollHeight) + 'px'
     }
+    const data = text.value
+    emit('input', data)
   }
 </script>
 
 <template>
-  <textarea :name="props.nameForAccessability" ref="area" class="resize w-full rounded-lg max-w-[100%] p-2" @input="resize" rows="3"></textarea>
+  <textarea v-model="text" :name="props.nameForAccessability" ref="area" class="resize w-full rounded-lg max-w-[100%] p-2" @input="handleInput" rows="3"></textarea>
 </template>
