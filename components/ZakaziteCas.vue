@@ -8,14 +8,10 @@
       <div class="flex justify-center w-full">
         <h1 class="text-6xl text-white font-bold bg-red-500 w-fit p-10 rounded-full rounded-br-none">Закажите час</h1>
       </div>
-      <div class="flex flex-col lg:flex-row lg:justify-between">
-        <div class="lg:max-w-[50%]">
-          <Form />
-        </div>
-        <div class="relative flex items-center justify-center lg:w-1/2">
-          <img src="../assets/images/zakazite-cas-img.jpg" >
-        </div>
+      <Form />
+      <div class="w-full flex justify-center">
+        <img src="../assets/images/zakazite-cas-img.jpg" class="w-1/2">
       </div>
-    </div>
+      </div>
   </section>
 </template>
