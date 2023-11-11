@@ -1,4 +1,5 @@
 <script setup>
+  const zakaziteCas = useState('zakazite-cas')
   onMounted(() => {
     const iconsLeft = document.querySelectorAll('.icon-left')
     const iconsRight = document.querySelectorAll('.icon-right')
@@ -26,7 +27,7 @@
     </div>
     <div class="title absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-500 rounded-[3rem] shadow-xl border-0 px-6 py-10 lg:p-20 z-[0]">
       <h1 class="text-white text-center text-6xl font-bold lg:whitespace-nowrap">ПРИВАТНИ ЧАСОВИ</h1>
-      <h3 class="text-white text-center text-6xl font-bold lg:whitespace-nowrap text-yellow-300">закажите одмах</h3>
+      <h3 @click="zakaziteCas.scrollIntoView({ behavior: 'smooth' })" class="text-white text-center text-6xl font-bold lg:whitespace-nowrap text-yellow-300 underline-offset-8 cursor-pointer hover:underline">закажите одмах</h3>
     </div>
   </section>
 </template>
@@ -37,7 +38,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    height: 100lvh;
+    height: 100dvh;
   }
 
   h1 {
