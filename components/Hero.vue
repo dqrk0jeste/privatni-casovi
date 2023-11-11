@@ -37,7 +37,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    height: 100svh;
+    height: 100lvh;
   }
 
   h1 {

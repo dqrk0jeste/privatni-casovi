@@ -1,5 +1,5 @@
 <script setup>
-  const props = defineProps(['nameForAccessability'])
+  const props = defineProps(['idForAccessability'])
   const emit = defineEmits(['input'])
 
   const area = ref(null)
@@ -15,5 +15,5 @@
 </script>
 
 <template>
-  <textarea v-model="text" :name="props.nameForAccessability" ref="area" class="resize w-full rounded-lg max-w-[100%] p-2" @input="handleInput" rows="3"></textarea>
+  <textarea v-model="text" :id="props.idForAccessability" ref="area" class="resize w-full rounded-lg max-w-[100%] p-2" @input="handleInput" rows="3"></textarea>
 </template>

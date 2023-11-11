@@ -19,11 +19,11 @@
       </a>
       <div class="flex items-center gap-1">
         <i class='bx bxs-phone text-black'></i>
-        <p>064 976 9196</p>
+        <a href="tel:0649769196">064 976 9196 - Дарко</a>
       </div>
       <div class="flex items-center gap-1">
         <i class='bx bxs-phone text-black'></i>
-        <p>064 976 9196</p>
+        <a href="tel:0649769196">064 976 9196 - Дарко</a>
       </div>
     </div>
   </div>

@@ -5,21 +5,38 @@
   const razred = ref('')
   const predmet = ref('')
   const oblast = ref('')
-  const detalji = ref('')
+  const detaljiOblasti = ref('')
+  const drugiRazlog = ref('')
   const datum = ref('')
+  const mesto = ref('')
+  const drugoMesto = ref('')
+  const vreme = ref('')
   const nastavnik = ref('')
   const napomena = ref('')
   function submitForm() {
-    console.log(imeIPrezime)
-    console.log(brojTelefona)
-    console.log(skola)
-    console.log(razred)
-    console.log(predmet)
-    console.log(oblast)
-    console.log(detalji)
-    console.log(datum)
-    console.log(nastavnik)
-    console.log(napomena)
+    const formData = {
+      podaci: {
+        imeIPrezime: imeIPrezime.value,
+        brojTelefona: brojTelefona.value,
+        skola: skola.value,
+        razred: razred.value
+      },
+      predmet: {
+        ime: predmet.value,
+        vrstaCasa: {
+          vrsta: oblast.value,
+          detalji: oblast.value === 'kontrolni' ? detaljiOblast.value : drugiRazlog.value
+        }
+      },
+      vreme: {
+        rok: datum.value,
+        preferiranoVreme: vreme.value
+      },
+      mesto: mesto.value === 'drugo' ? drugoMesto.value : mesto.value,
+      nastavnik: nastavnik.value,
+      napomena: napomena.value
+    }
+    console.log(formData)
   }
 </script>
 
@@ -35,7 +52,7 @@
         <input v-model="skola" name="skola" placeholder="Школа" class="rounded-lg p-3" required>
         <div>
           <label for="razred">Разред:</label>
-          <select v-model="razred" name="razred" class="ml-3 p-3 rounded-lg" required>
+          <select v-model="razred" name="razred" id="razred" class="ml-3 p-3 rounded-lg" required>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -52,14 +69,15 @@
     <div class="mb-5">
       <h2 class="text-4xl font-bold text-blue-500 mb-4">Предмет</h2>
       <div>
-        <select v-model="predmet" name="predmet" class="rounded-lg p-3">
+        <label for="predmet">Одаберите предмет</label>
+        <select v-model="predmet" name="predmet" id="predmet" class="rounded-lg p-3 ml-3 my-3" required>
           <option value="matematika" class="rounded-lg p-3">Математика</option>
           <option value="fizika">Физика</option>
           <option value="srpski">Српски</option>
         </select>
       </div>
       <div class="mt-5">
-        <input v-model="oblast" type="radio" name="oblast" value="kontrolni" id="kontrolni" checked>
+        <input v-model="oblast" type="radio" name="oblast" value="kontrolni" id="kontrolni" required>
         <label for="kontrolni" class="ml-2">Припреме за контролни</label><br>
         <input v-model="oblast" type="radio" name="oblast" value="takmicenje" id="takmicenje">
         <label for="takmicenje" class="ml-2">Припреме за такмичење</label><br>
@@ -68,36 +86,64 @@
         <input v-model="oblast" type="radio" name="oblast" value="drugo" id="drugo">
         <label for="drugo" class="ml-2">Друго</label>
       </div>
-      <div class="mt-5">
-        <label for="detalji">Детаљније о области из које Вам је потребан час (опционо)</label><br>
-        <ResizibleArea nameForAccessability="detalji" @input="(data) => { detalji = data }" /><br>
+      <div v-if="oblast === 'kontrolni'" class="mt-5">
+        <label for="detalji-oblasti">Oбласт из које Вам је потребан час</label><br>
+        <ResizibleArea idForAccessability="detalji-oblasti" @input="(data) => { detaljiOblasti = data }" required/><br>
+      </div>
+      <div v-if="oblast === 'drugo'" class="mt-5">
+        <label for="drugi-razlog">Напишите зашто Вам је потребан час?</label><br>
+        <ResizibleArea idForAccessability="drugi-razlog" @input="(data) => { drugiRazlog = data }" required/><br>
       </div>
     </div>
 
     <div class="mb-5">
       <h2 class="text-4xl font-bold text-blue-500 mb-4">Детаљи</h2>
-      <label for="datum">До када Вам је потребно да одржимо час?</label>
-      <input v-model="datum" type="date" name="datum" class="rounded-lg p-3 ml-3 mt-3" required><br>
-  
-      <label for="nastavnik">Одаберите наставника:</label>
-      <select v-model="nastavnik" name="nastavnik" class="rounded-lg p-3 ml-3 mt-3">
-        <option selected value="bilo ko">било ко</option>
+      <div v-if="oblast === 'kontrolni'">
+        <label for="datum">До када Вам је потребно да одржимо час?</label>
+        <input v-model="datum" type="date" name="datum" id="datum" class="rounded-lg p-3 ml-3 my-3" required><br>
+      </div>
+      <div>
+        <label for="vreme">Које Вам време одговара?</label>
+        <select v-model="vreme" name="vreme" id="vreme" class="rounded-lg p-3 ml-3 my-3" required>
+          <option value="vikend">Викенд</option>
+          <option value="ujutru">Радним даном, ујутру</option>
+          <option value="uvece">Радним даном, увече</option>
+          <option value="svejedno">Свеједно</option>
+        </select>
+      </div>
+      <div>
+        <label for="mesto">Где бисте желели да одржимо час?</label>
+        <select v-model="mesto" name="mesto" id="mesto" class="rounded-lg p-3 ml-3 my-3" required>
+          <option value="kod nastavnika">Код наставника кући</option>
+          <option value="kod ucenika">Долазак на Вашу адресу</option>
+          <option value="online">Онлине</option>
+          <option value="drugo">Негде другде</option>
+        </select>
+      </div>
+      <div v-if="mesto === 'drugo'" class="my-5">
+        <label for="drugo-mesto">Где? (библиотека, школа...)</label><br>
+        <ResizibleArea idForAccessability="drugo-mesto" @input="(data) => { drugoMesto = data }" required/><br>
+      </div>
+
+      <label for="nastavnik">Одаберите наставника</label>
+      <select v-model="nastavnik" name="nastavnik" id="nastavnik" class="rounded-lg p-3 ml-3 mt-3" required>
+        <option selected value="bilo ko">Било ко</option>
         <option value="darko">Дарко</option>
         <option value="jakov">Јаков</option>
         <option value="pavle">Павле</option>
         <option value="aleksandar">Александар</option>
         <option value="vuk">Вук</option>
       </select><br>
+      <p class="text-sm text-red-500 mt-2">Напомена: Не желим да учим неког за два!</p>
     </div>
 
     <div class="pt-5 border-solic border-black border-t-2">
-      <label for="napomena" class="text-lg">Нека напомена:</label><br>
-      <ResizibleArea nameForAccessability="napomena" @input="(data) => { napomena = data }" />
+      <label for="napomena">Нека напомена (опционо)</label><br>
+      <ResizibleArea idForAccessability="napomena" @input="(data) => { napomena = data }" />
     </div>
 
     <div class="flex justify-end">
-      <button type="submit" class="mt-5 px-5 py-3 border-2 border-none bg-red-500 text-white text-lg font-bold rounded-full hover:bg-white hover:text-red-500 hover:border-solid hover:border-red-500 hover:px-[calc(1.25rem-2px)]
-      hover:py-[calc(0.75rem-2px)] transition-color">Проследи пријаву</button>
+      <button type="submit" class="mt-5 px-5 py-3 border-2 border-none bg-red-500 text-white text-lg font-bold rounded-full hover:bg-red-600">Проследи пријаву</button>
     </div>
   </form>
 </template>

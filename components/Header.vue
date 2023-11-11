@@ -10,13 +10,11 @@
     </div>
     <div>
       <nav class="flex">
-        <ul class="hidden md:flex items-center gap-5 text-lg">
-          <li><a href="/about" class="hover:underline">О нама</a></li>
-          <li><a class="hover:underline cursor-pointer">Контакт</a></li>
-          <li><a class="hover:underline cursor-pointer"></a></li>
-          <li><a class="hover:underline cursor-pointer"></a></li>
+        <ul class="hidden md:flex items-center gap-5 text-lg mr-10">
+          <li class="hover:underline cursor-pointer">О нама</li>
+          <li class="hover:underline cursor-pointer">Контакт</li>
         </ul>
-        <button class="hidden text-lg font-bold py-3 px-3 rounded-full rounded-br-none bg-red-500 text-white hover:rounded-br-full transition-all md:block">Закажите час</button>
+        <button class="hidden text-lg font-bold py-3 px-3 rounded-full rounded-br-none bg-red-500 text-white hover:rounded-br-full hover:bg-red-600 transition-all md:block">Закажите час</button>
       </nav>
     </div>
   </header>
