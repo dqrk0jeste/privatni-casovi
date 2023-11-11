@@ -1,9 +1,13 @@
 <script setup>
+  const footer = ref(null)
 
+  onMounted(() => {
+    useState('footer', () => footer.value)
+  })
 </script>
 
 <template>
-  <div class="bg-blue-500 w-full">
+  <div ref="footer" class="bg-blue-500 w-full">
     <div class="max-w-[1500px] mx-auto px-5 py-20 flex flex-col gap-10 items-center justify-evenly md:flex-row">
       <div class="flex flex-col items-center">
         <div class="flex items-center gap-3">

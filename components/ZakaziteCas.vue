@@ -1,5 +1,5 @@
-<script setup lang='ts'>
-
+<script setup>
+  
 </script>
 
 <template>
@@ -10,7 +10,7 @@
       </div>
       <Form />
       <div class="w-full flex justify-center">
-        <img src="../assets/images/zakazite-cas-img.jpg" class="w-1/2">
+        <img src="../assets/images/zakazite-cas-img.jpg" class="w-1/2 min-w-[350px]">
       </div>
       </div>
   </section>

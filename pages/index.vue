@@ -1,12 +1,16 @@
 <script setup>
+  const zakaziteCasInIndex = ref(null)
+
+  onMounted(() => {
+    useState('zakazite-cas-in-index', () => zakaziteCasInIndex.value)
+  })
 </script>
 
 <template>
   <Hero />
-  <ZakaziteCas />
+  <div ref="zakaziteCasInIndex">
+    <ZakaziteCas />
+  </div>
 </template>
-
-<style scoped>
-</style>
 
 

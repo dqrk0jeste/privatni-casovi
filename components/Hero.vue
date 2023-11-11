@@ -1,5 +1,5 @@
 <script setup>
-  onBeforeMount(() => {
+  onMounted(() => {
     const iconsLeft = document.querySelectorAll('.icon-left')
     const iconsRight = document.querySelectorAll('.icon-right')
     const background = document.querySelector('.background')
