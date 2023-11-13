@@ -1,25 +1,21 @@
-// import { createPool, sql } from '@vercel/postgres'
+import { createPool, sql } from '@vercel/postgres'
 
-// export default defineEventHandler(async () => {
-//   const db = createPool()
-//   try {
-//     const { rows: users } = await db.query('SELECT * FROM users')
-//     return {
-//       users: users,
-//       duration: duration,
-//     }
-//   } catch (error) {
-//     if (error?.message === `relation "users" does not exist`) {
-//       console.log(
-//         'Table does not exist, creating and seeding it with dummy data now...'
-//       )
-//       await seed()
-//       const { rows: users } = await db.query('SELECT * FROM users')
-//       const duration = Date.now() - startTime
-//       return {
-//         users: users,
-//         duration: duration,
-//       }
-//     }
-//   }
-// })
+export default defineEventHandler(async (event) => {
+  const db = createPool()
+  const query = getQuery(event)
+  if(query.predmet === '') return []
+  try {
+    const { rows: nastavnici } = await db.query(`
+    SELECT nastavnici.id as id, nastavnici.ime as ime, napomena
+    FROM nastavnici_predmeti
+    INNER JOIN nastavnici on nastavnici_predmeti.id_nastavnika = nastavnici.id
+    WHERE nastavnici_predmeti.id_predmeta = ${query.predmet}
+    `)
+    return nastavnici
+  } catch (error) {
+    throw createError({
+      statusCode: 500,
+      statusMessage: 'error'
+    })
+  }
+})

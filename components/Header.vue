@@ -64,18 +64,18 @@
           <ul class="flex items-center gap-5 text-lg mr-10">
             <li v-if="route.path === '/'" @click="usluge.scrollIntoView({ behavior: 'smooth'})" class="hover:underline cursor-pointer">Услуге</li>
             <li @click="footer.scrollIntoView({ behavior: 'smooth'})" class="hover:underline cursor-pointer">Контакт</li>
-            <li><NuxtLink href="/o-nama" class="hover:underline cursor-pointer">О нама</NuxtLink></li>
+            <li v-if="route.path !== '/o-nama'"><NuxtLink href="/o-nama" class="hover:underline cursor-pointer">О нама</NuxtLink></li>
           </ul>
           <button @click="handleZakaziteCas" class="hidden text-lg font-bold py-3 px-3 rounded-full rounded-br-none bg-red-500 text-white hover:rounded-br-full hover:bg-red-600 transition-all md:block">Закажите час</button>
         </nav>
       </div>
     </div>
     <div v-if="openMenu">
-      <ul>
+      <ul class="border-solid border-b-2 border-black">
         <li v-if="route.path !== '/'" @click="router.push('/'); openMenu = false; openMenuForMiddle = false" class="text-xl border-solid border-t-2 border-black px-5 py-3 cursor-pointer hover:bg-yellow-200 active:bg-yellow-200">Почетна</li>
         <li v-if="route.path === '/'" @click="usluge.scrollIntoView({ behavior: 'smooth'}); openMenu = false; openMenuForMiddle = false" class="text-xl border-solid border-t-2 border-black px-5 py-3 cursor-pointer hover:bg-yellow-200 active:bg-yellow-200">Услуге</li>
         <li @click="footer.scrollIntoView({ behavior: 'smooth'}); openMenu = false; openMenuForMiddle = false" class="text-xl border-solid border-t-2 border-black px-5 py-3 cursor-pointer hover:bg-yellow-200 active:bg-yellow-200">Контакт</li>
-        <li v-if="route.path !== '/o-nama'" @click="router.push('/o-nama'); openMenu = false; openMenuForMiddle = false" class="text-xl border-solid border-y-2 border-black px-5 py-3 cursor-pointer hover:bg-yellow-200 active:bg-yellow-200">О нама</li>
+        <li v-if="route.path !== '/o-nama'" @click="router.push('/o-nama'); openMenu = false; openMenuForMiddle = false" class="text-xl border-solid border-t-2 border-black px-5 py-3 cursor-pointer hover:bg-yellow-200 active:bg-yellow-200">О нама</li>
       </ul>
     </div>
   </header>

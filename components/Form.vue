@@ -11,9 +11,24 @@
   const mesto = ref('')
   const drugoMesto = ref('')
   const vreme = ref('')
-  const nastavnik = ref('')
+  const nastavnik = ref('0')
   const napomena = ref('')
-  function submitForm() {
+
+  const formSubmitted = ref(false)
+  const formError = ref(null)
+
+  const { data: predmeti, pending: predmetiPending, error: predmetiError } = await useFetch('/api/predmeti')
+  const { data: nastavnici, pending: nastavniciPending, error: nastavniciError } = await useFetch('/api/nastavnici', {
+    query: {
+      predmet: predmet
+    },
+    transform: (data) => {
+      nastavnik.value = '0'
+      return data
+    }
+  })
+
+  async function submitForm() {
     const formData = {
       podaci: {
         imeIPrezime: imeIPrezime.value,
@@ -22,10 +37,10 @@
         razred: razred.value
       },
       predmet: {
-        ime: predmet.value,
+        id: predmet.value,
         vrstaCasa: {
           vrsta: oblast.value,
-          detalji: oblast.value === 'kontrolni' ? detaljiOblast.value : drugiRazlog.value
+          detalji: oblast.value === 'kontrolni' ? detaljiOblasti.value : drugiRazlog.value
         }
       },
       vreme: {
@@ -36,12 +51,65 @@
       nastavnik: nastavnik.value,
       napomena: napomena.value
     }
-    console.log(formData)
+    const { error } = await useFetch('/api/prijava', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
+    console.log(error.value)
+    if(error.value) {
+      formError.value = error.value
+      resetFields()
+    } else {
+      formSubmitted.value = true
+    }
   }
+
+  function resetFields() {
+    imeIPrezime.value = ''
+    brojTelefona.value = ''
+    skola.value = ''
+    razred.value = ''
+    predmet.value = ''
+    oblast.value = ''
+    detaljiOblasti.value = ''
+    drugiRazlog.value = ''
+    datum.value = ''
+    mesto.value = ''
+    drugoMesto.value = ''
+    vreme.value = ''
+    nastavnik.value = '0'
+    napomena.value = ''
+  }
+
+  const nastavnikovaNapomena = computed(() => {
+    if(nastavnik.value !== '0' && nastavnici.value) {
+      const found = nastavnici.value.filter(n => n.id === nastavnik.value)[0]
+      return found.napomena
+    }
+  })
+
+  watch(formSubmitted, () => {
+    if(formSubmitted.value === true) {
+      setTimeout(() => {
+        formSubmitted.value = false
+      }, 5000)
+    }
+  })
 </script>
 
 <template>
-  <form @submit.prevent="submitForm" class="mt-10 px-5 flex flex-col justify-center gap-x-20 lg:flex-row">
+  <div v-if="formError || predmetiError || nastavniciError" class="text-center p-20 bg-yellow-200 w-fit mx-auto mt-10 rounded-[4rem]">
+    <h1 class="text-3xl">Дошло је до грешке. Mолим Вас покушајте касније.</h1>
+    <p>Уколико се грешке наставе контактирајте нас <a class="underline underline-offset-2 cursor-pointer" href="mailto:darkonikoloc@gmail.com">кликом овде.</a></p>
+  </div>
+  <div v-else-if="formSubmitted" class="text-center px-5 py-10 bg-yellow-200 w-fit mx-auto mt-10 rounded-[4rem] max-w-[1200px] mx-auto md:p-20">
+    <h1 class="text-4xl">Ваша пријава је послата. Очекујте позив наставника наредних дана.</h1>
+    <p>Уколико имате нека питања или желите нешто додати Вашој пријави, можете то учинити <a class="underline underline-offset-2 cursor-pointer" href="mailto:darkonikoloc@gmail.com">кликом овде.</a></p>
+  </div>
+  <form v-else @submit.prevent="submitForm" class="mt-10 px-5 flex flex-col justify-center gap-x-20 lg:flex-row">
     <div>
       <div class="mb-5">
         <h2 class="text-4xl font-bold text-blue-500 mb-4">Ваши подаци</h2>
@@ -69,12 +137,13 @@
 
       <div class="mb-5">
         <h2 class="text-4xl font-bold text-blue-500 mb-4">Предмет</h2>
-        <div>
+        <div v-if="predmetiPending">
+          Учитавање...
+        </div>
+        <div v-else-if="predmeti">
           <label for="predmet">Одаберите предмет</label>
           <select v-model="predmet" name="predmet" id="predmet" class="rounded-lg p-3 ml-3 my-3" required>
-            <option value="matematika" class="rounded-lg p-3">Математика</option>
-            <option value="fizika">Физика</option>
-            <option value="srpski">Српски</option>
+            <option v-for="p in predmeti" :key="p.id" :value="p.id">{{ p.ime }}</option>
           </select>
         </div>
         <div class="mt-5">
@@ -127,17 +196,17 @@
           <label for="drugo-mesto">Где? (библиотека, школа...)</label><br>
           <ResizibleArea idForAccessability="drugo-mesto" @input="(data) => { drugoMesto = data }" required/><br>
         </div>
-  
-        <label for="nastavnik">Одаберите наставника</label>
-        <select v-model="nastavnik" name="nastavnik" id="nastavnik" class="rounded-lg p-3 ml-3 mt-3" required>
-          <option selected value="bilo ko">Било ко</option>
-          <option value="darko">Дарко</option>
-          <option value="jakov">Јаков</option>
-          <option value="pavle">Павле</option>
-          <option value="aleksandar">Александар</option>
-          <option value="vuk">Вук</option>
-        </select><br>
-        <p class="text-sm text-red-500 mt-2">Напомена: Не желим да учим неког за два!</p>
+        <div v-if="nastavniciPending">
+          Учитавање...
+        </div>
+        <div v-else>
+          <label for="nastavnik">Одаберите наставника</label>
+          <select v-model="nastavnik" name="nastavnik" id="nastavnik" class="rounded-lg p-3 ml-3 mt-3" required>
+            <option value="0">Било ко</option>
+            <option v-for="n in nastavnici" :value="n.id">{{ n.ime }}</option>
+          </select><br>
+          <p v-if="nastavnikovaNapomena" class="text-sm text-red-500 mt-2">Напомена: {{ nastavnikovaNapomena }}</p>
+        </div>
       </div>
   
       <div class="pt-5 border-solic border-black border-t-2">
