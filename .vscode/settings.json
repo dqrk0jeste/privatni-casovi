@@ -9,7 +9,7 @@
       "previewLimit": 50,
       "server": "localhost",
       "driver": "PostgreSQL",
-      "connectString": "postgres://default:NcqPoQY7Zh1U@ep-polished-bush-78298286-pooler.eu-central-1.postgres.vercel-storage.com/verceldb",
+      "connectString": "",
       "name": "privatni-casovi"
     }
   ]
