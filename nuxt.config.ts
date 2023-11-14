@@ -6,7 +6,7 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  runtimeConfig: {
-    connectionString: process.env.POSTGRES_URL
-  }
+  // runtimeConfig: {
+  //   connectionString: process.env.POSTGRES_URL
+  // }
 })
