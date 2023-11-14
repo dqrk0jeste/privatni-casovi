@@ -16,10 +16,8 @@
 </script>
 
 <template>
-  <div>
-    <Header />
-    <NuxtPage />
-    <Footer />
-  </div>
+  <NuxtLayout>
+  <NuxtPage />
+  </NuxtLayout>
 </template>
 
