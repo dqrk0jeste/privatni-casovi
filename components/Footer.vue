@@ -14,7 +14,7 @@
           <h1 class="text-4xl font-bold text-yellow-300">ЧАСОВИ</h1>
           <img src="../assets/images/logo.svg" class="w-10">
         </div>
-        <p class="text-white text=center">Услуге приватних часова из разних предмета</p>
+        <p class="text-white text-center">Услуге приватних часова из разних предмета</p>
       </div>
       <div class="text-white">
         <h1 class="text-2xl font-bold mb-3 text-yellow-300">Контактирајте нас:</h1>
