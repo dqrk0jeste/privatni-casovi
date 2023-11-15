@@ -4,7 +4,7 @@
       lang: 'sr'
     },
     title: 'Приватни часови',
-    viewport: "width=device-width, initial-scale=1, minimum-scale=1",
+    viewport: "width=device-width, initial-scale=1, maximum-scale=1",
     charset: "utf-8",
     meta: [
       { name: "description", content: "Услуге приватних часова из разних предмета у Краљеву." }
