@@ -58,7 +58,6 @@
       },
       body: JSON.stringify(formData)
     })
-    console.log(error.value)
     if(error.value) {
       formError.value = error.value
       resetFields()

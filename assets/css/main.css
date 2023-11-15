@@ -10,6 +10,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Raleway', Arial;
+  text-size-adjust: none;
 }
 
 html {
