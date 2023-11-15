@@ -1,28 +1,22 @@
 import jsonwebtoken from 'jsonwebtoken'
 
-export default defineEventHandler(async (event) => {
+export default function(event) {
   const token = getCookie(event, 'jwt')
   if(!token) return {
     code: 403,
     message: 'not authorized'
   }
-  let response
+  let user
   jsonwebtoken.verify(
     token,
     useRuntimeConfig().tokenSecret,
     async (error, decoded) => {
       if (error) {
-        response = {
-          code: 403,
-          message: 'not authorized'
-        }
+        user = null
       } else {
-        response = {
-          code: 200,
-          user: decoded.user
-        }
+        user = decoded.user
       }
     }
   )
-  return response
-})
+  return user
+}
