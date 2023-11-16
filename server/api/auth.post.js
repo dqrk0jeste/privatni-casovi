@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
   const body = await readBody(event)
   try {
     const { rows: users } = await db.query(`
-      SELECT username, passwordhash FROM nastavnici
+      SELECT id, username, passwordhash FROM nastavnici
       WHERE username = '${body.username}';
       `
     )
@@ -19,7 +19,7 @@ export default defineEventHandler(async (event) => {
     const validPassword = await bcrypt.compare(body.password, user.passwordhash)
       if(validPassword) {
         const token = jsonwebtoken.sign(
-          { user: user.username },
+          { username: user.username, id: user.id },
           useRuntimeConfig().tokenSecret,
           { expiresIn: '12h' }
         )
