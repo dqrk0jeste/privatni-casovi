@@ -1,7 +1,6 @@
 <script setup>
   const { taskInfo, other } = defineProps(['taskInfo', 'other'])
-
-  const refetch = useState('refetch')
+  const emit = defineEmits(['update-my-tasks'])
 
   const id = taskInfo.id
   
@@ -19,11 +18,31 @@
         })
       })
       if(response.code === 200) {
-        refetch.value = !refetch.value
+        emit('update-my-tasks', id)
       } else {
         error.value = true
       }
     } catch(e) {
+      console.log(e)
+      error.value = e
+    }
+  }
+
+  async function takeTask() {
+    try {
+      const response = await $fetch(`/api/take`, {
+        method: 'PUT',
+        body: JSON.stringify({
+          idPrijave: id
+        })
+      })
+      if(response.code === 200) {
+        emit('add-to-my-tasks', taskInfo)
+      } else {
+        error.value = true
+      }
+    } catch(e) {
+      console.log(e)
       error.value = e
     }
   }
@@ -71,7 +90,7 @@
         <i v-else class='bx bx-collapse-vertical'></i>
       </button>
     </div>
-    <div class="-mt-5 bg-white border-solid border-black border-0 shadow-lg rounded-b-xl text-lg pt-8 px-5 h-0 overflow-hidden" :class="open ? 'h-auto pb-3' : 'h-0'">
+    <div class="-mt-5 bg-white border-solid border-black border-0 shadow-lg rounded-b-xl text-lg pt-8 px-5 overflow-hidden" :class="open ? 'pb-3' : 'max-h-0'">
       <p>Број телефона: {{ taskInfo.broj_telefona }}</p>
       <p>Школа: {{ taskInfo.skola }}</p>
       <p>Разред: {{ taskInfo.razred }}</p>
@@ -81,8 +100,13 @@
       <p>Преферирано време: {{ odrediPreferiranoVreme }}</p>
       <p>Место: {{ odrediMesto }}</p>
       <p>Напомена: {{ taskInfo.napomena }}</p>
-      <button @click="wantsToDelete = true" class="px-2 py-1 rounded-lg bg-red-500 text-white mt-3 hover:bg-red-600">Обриши</button>
-      <button @click="deleteTask" class="ml-2 text-red-500 underline-offset-2 hover:underline" :class="wantsToDelete ? 'inline-block' : 'hidden'">Потврди</button>
+      <div v-if="other">
+        <button @click="takeTask" class="px-2 py-1 rounded-lg bg-blue-500 text-white mt-3 hover:bg-blue-600">Преузми</button>
+      </div>
+      <div v-else>
+        <button @click="wantsToDelete = true" class="px-2 py-1 rounded-lg bg-red-500 text-white mt-3 hover:bg-red-600">Обриши</button>
+        <button @click="deleteTask" class="ml-2 text-red-500 underline-offset-2 hover:underline" :class="wantsToDelete ? 'inline-block' : 'hidden'">Потврди</button>
+      </div>
       <span v-if="error" class="ml-2">Дошло је до грешке.</span>
     </div>
   </div>

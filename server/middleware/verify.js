@@ -5,7 +5,8 @@ export default defineEventHandler((event) => {
     '/admin/dashboard',
     '/api/prijave',
     '/api/current',
-    '/api/delete'
+    '/api/delete',
+    '/api/take'
   ]
   if(!urls.includes(getRequestURL(event).pathname)) return
   const token = getCookie(event, 'jwt')
