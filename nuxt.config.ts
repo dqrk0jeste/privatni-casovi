@@ -1,4 +1,7 @@
 export default defineNuxtConfig({
+  routeRules: {
+    '/admin/dashboard': { ssr: false }
+  },
   css: ['~/assets/css/main.css'],
   postcss: {
     plugins: {
@@ -7,6 +10,7 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
-    connectionString: process.env.POSTGRES_URL
+    connectionString: process.env.POSTGRES_URL,
+    tokenSecret: process.env.TOKEN_SECRET,
   }
 })

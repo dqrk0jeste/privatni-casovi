@@ -1,7 +1,7 @@
 <template>
   <div class="bg-yellow-300 mt-10">
     <div class="relative">
-      <img src="../assets/images/o-nama-img.jpg" class="w-full max-w-[2000px] mx-auto">
+      <img src="../assets/images/o-nama-img.jpg" class="w-full max-w-[2000px] mx-auto min-h-[200px] object-cover">
       <div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 px-10 py-5 bg-blue-500 rounded-full">
         <h1 class="text-6xl font-bold text-white z-20 whitespace-nowrap">О нама</h1>
       </div>

@@ -60,8 +60,8 @@
     })
     if(error.value) {
       formError.value = error.value
-      resetFields()
     } else {
+      resetFields()
       formSubmitted.value = true
     }
   }

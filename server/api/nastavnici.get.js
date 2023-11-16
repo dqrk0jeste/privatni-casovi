@@ -1,4 +1,4 @@
-import { createPool, sql } from '@vercel/postgres'
+import { createPool } from '@vercel/postgres'
 
 export default defineEventHandler(async (event) => {
   const db = createPool()

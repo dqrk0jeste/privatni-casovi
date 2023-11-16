@@ -15,5 +15,5 @@
 </script>
 
 <template>
-  <textarea v-model="text" :id="props.idForAccessability" ref="area" class="resize-y w-full rounded-lg p-2 ml-3" @input="handleInput" rows="3"></textarea>
+  <textarea v-model="text" :id="props.idForAccessability" ref="area" class="resize-y w-full rounded-lg p-2 ml-3 mt-3" @input="handleInput" rows="3"></textarea>
 </template>
