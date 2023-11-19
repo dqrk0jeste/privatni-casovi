@@ -104,7 +104,7 @@
     <h1 class="text-3xl">Дошло је до грешке. Mолим Вас покушајте касније.</h1>
     <p>Уколико се грешке наставе контактирајте нас <a class="underline underline-offset-2 cursor-pointer" href="mailto:darkonikoloc@gmail.com">кликом овде.</a></p>
   </div>
-  <div v-else-if="formSubmitted" class="text-center px-5 py-10 bg-yellow-200 w-fit mx-auto mt-10 rounded-[4rem] max-w-[1200px] mx-auto md:p-20">
+  <div v-else-if="formSubmitted" class="text-center px-5 py-10 bg-yellow-200 w-fit mx-auto mt-10 rounded-[4rem] max-w-[1200px]  md:p-20">
     <h1 class="text-4xl">Ваша пријава је послата. Очекујте позив наставника наредних дана.</h1>
     <p>Уколико имате нека питања или желите нешто додати Вашој пријави, можете то учинити <a class="underline underline-offset-2 cursor-pointer" href="mailto:darkonikoloc@gmail.com">кликом овде.</a></p>
   </div>
