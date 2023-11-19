@@ -101,17 +101,17 @@
 
 <template>
   <div v-if="formError || predmetiError || nastavniciError" class="text-center p-20 bg-yellow-200 w-fit mx-auto mt-10 rounded-[4rem]">
-    <h1 class="text-3xl">Дошло је до грешке. Mолим Вас покушајте касније.</h1>
+    <h3 class="text-3xl">Дошло је до грешке. Mолим Вас покушајте касније.</h3>
     <p>Уколико се грешке наставе контактирајте нас <a class="underline underline-offset-2 cursor-pointer" href="mailto:darkonikoloc@gmail.com">кликом овде.</a></p>
   </div>
   <div v-else-if="formSubmitted" class="text-center px-5 py-10 bg-yellow-200 w-fit mx-auto mt-10 rounded-[4rem] max-w-[1200px]  md:p-20">
-    <h1 class="text-4xl">Ваша пријава је послата. Очекујте позив наставника наредних дана.</h1>
+    <h3 class="text-4xl">Ваша пријава је послата. Очекујте позив наставника наредних дана.</h3>
     <p>Уколико имате нека питања или желите нешто додати Вашој пријави, можете то учинити <a class="underline underline-offset-2 cursor-pointer" href="mailto:darkonikoloc@gmail.com">кликом овде.</a></p>
   </div>
   <form v-else @submit.prevent="submitForm" class="mt-10 px-5 flex flex-col justify-center gap-x-20 lg:flex-row">
     <div>
       <div class="mb-5">
-        <h2 class="text-4xl font-bold text-blue-500 mb-4">Ваши подаци</h2>
+        <h3 class="text-4xl font-bold text-blue-500 mb-4">Ваши подаци</h3>
         <div class="flex gap-5 flex-col md:flex-row">
           <input v-model="imeIPrezime" name="ime-i-prezime" placeholder="Име и презиме" class="rounded-lg p-3" required>
           <input v-model="brojTelefona" name="broj-telefona" placeholder="Број телефона" class="rounded-lg p-3" required>
@@ -135,7 +135,7 @@
       </div>
 
       <div class="mb-5">
-        <h2 class="text-4xl font-bold text-blue-500 mb-4">Предмет</h2>
+        <h3 class="text-4xl font-bold text-blue-500 mb-4">Предмет</h3>
         <div v-if="predmetiPending">
           Учитавање...
         </div>
@@ -168,7 +168,7 @@
     
     <div>
       <div class="mb-5">
-        <h2 class="text-4xl font-bold text-blue-500 mb-4">Детаљи</h2>
+        <h3 class="text-4xl font-bold text-blue-500 mb-4">Детаљи</h3>
         <div v-if="oblast === 'kontrolni'">
           <label for="datum">До када Вам је потребно да одржимо час?</label>
           <input v-model="datum" type="date" name="datum" id="datum" class="rounded-lg p-3 ml-3 my-3" required><br>

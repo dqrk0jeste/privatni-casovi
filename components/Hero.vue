@@ -27,7 +27,7 @@
     </div>
     <div class="title absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-500 rounded-[3rem] shadow-xl border-0 px-6 py-10 lg:p-20 z-[0]">
       <h1 class="text-white text-center text-6xl font-bold lg:whitespace-nowrap">ПРИВАТНИ ЧАСОВИ</h1>
-      <h3 @click="zakaziteCas.scrollIntoView({ behavior: 'smooth' })" class="text-center text-6xl font-bold lg:whitespace-nowrap text-yellow-300 underline-offset-8 cursor-pointer hover:underline">закажите одмах</h3>
+      <h2 @click="zakaziteCas.scrollIntoView({ behavior: 'smooth' })" class="text-center text-6xl font-bold lg:whitespace-nowrap text-yellow-300 underline-offset-8 cursor-pointer hover:underline">закажите одмах</h2>
     </div>
   </section>
 </template>
