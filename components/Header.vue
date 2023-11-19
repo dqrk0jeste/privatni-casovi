@@ -51,7 +51,7 @@
   <header class="fixed z-50 top-0 left-0 bg-yellow-300 w-full flex flex-col">
     <div class="flex items-center justify-between py-3 px-4 h-[76px]">
       <div @click="handleHome" class="flex items-center gap-3 cursor-pointer">
-        <h1 class="text-4xl font-bold text-blue-500">ЧАСОВИ</h1>
+        <span class="text-4xl font-bold text-blue-500">ЧАСОВИ</span>
         <img src="../assets/images/logo.svg" class="w-10">
       </div>
       <div>

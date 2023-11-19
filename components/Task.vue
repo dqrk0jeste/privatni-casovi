@@ -81,7 +81,7 @@
   <div class="mt-3">
     <div class="bg-white border-solid border-black border-0 shadow-lg rounded-xl px-5 pt-3 flex justify-between">
       <div>
-        <h2 class="text-2xl font-bold -ml-3">~{{ taskInfo.rok === '' ? '' : taskInfo.rok }}</h2>
+        <h3 class="text-2xl font-bold -ml-3">~{{ taskInfo.rok === '' ? '' : taskInfo.rok }}</h3>
         <p class="text-lg">Име: {{ taskInfo.ime }}</p>
         <p class="text-lg">Предмет: {{taskInfo.predmet }}</p>
       </div>
