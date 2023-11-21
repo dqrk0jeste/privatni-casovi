@@ -10,7 +10,7 @@
       </div>
       <Form />
       <div class="w-full flex justify-center">
-        <img src="../assets/images/zakazite-cas-img.jpg" class="w-1/2 min-w-[350px]">
+        <img src="../assets/images/zakazite-cas-img.jpg" class="w-1/2 min-w-[350px]" alt="school accessories">
       </div>
       </div>
   </section>

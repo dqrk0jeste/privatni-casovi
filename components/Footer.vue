@@ -12,7 +12,7 @@
       <div class="flex flex-col items-center">
         <div class="flex items-center gap-3">
           <h2 class="text-4xl font-bold text-yellow-300">ЧАСОВИ</h2>
-          <img src="../assets/images/logo.svg" class="w-10">
+          <img src="../assets/images/logo.svg" class="w-10" alt="logo">
         </div>
         <p class="text-white text-center">Услуге приватних часова из разних предмета</p>
       </div>
