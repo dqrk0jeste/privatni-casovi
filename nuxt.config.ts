@@ -1,5 +1,6 @@
 export default defineNuxtConfig({
   routeRules: {
+    '/': { prerender: true },
     '/admin/dashboard': { ssr: false }
   },
   css: ['~/assets/css/main.css'],

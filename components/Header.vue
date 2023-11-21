@@ -52,7 +52,7 @@
     <div class="flex items-center justify-between py-3 px-4 h-[76px]">
       <div @click="handleHome" class="flex items-center gap-3 cursor-pointer">
         <span class="text-4xl font-bold text-blue-500">ЧАСОВИ</span>
-        <img src="../assets/images/logo.svg" class="w-10">
+        <img src="../assets/images/logo.svg" class="w-10" alt="logo">
       </div>
       <div>
         <button @click="openMenuEvent" class="md:hidden" :class="openMenu ? 'py-2' : ''">

@@ -17,8 +17,8 @@
   const formSubmitted = ref(false)
   const formError = ref(null)
 
-  const { data: predmeti, pending: predmetiPending, error: predmetiError } = await useFetch('/api/predmeti')
-  const { data: nastavnici, pending: nastavniciPending, error: nastavniciError } = await useFetch('/api/nastavnici', {
+  const { data: predmeti, pending: predmetiPending, error: predmetiError } = useFetch('/api/predmeti')
+  const { data: nastavnici, pending: nastavniciPending, error: nastavniciError } = useFetch('/api/nastavnici', {
     query: {
       predmet: predmet
     },
