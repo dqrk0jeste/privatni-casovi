@@ -17,7 +17,7 @@
         <p class="text-white text-center">Услуге приватних часова у Краљеву.</p>
       </div>
       <div class="flex flex-col items-center text-white">
-        <h3 class="text-2xl font-bold mb-3 text-yellow-300">Контактирајте нас:</h3>
+        <h3 class="text-2xl font-bold mb-3 text-yellow-300">Контактирајте нас</h3>
         <div class="flex items-center gap-1">
           <i class='bx bxl-instagram text-black'></i>
           <a href="https://instagram.com/privatni.casovi.kraljevo?igshid=OGQ5ZDc2ODk2ZA==" target="_blank" class="hover:underline">@privatni.casovi.kraljevo</a>
