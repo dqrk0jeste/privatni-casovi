@@ -18,8 +18,8 @@
 
 <template>
   <section id="hero" class="relative">
-    <div class="background relative w-full bg-fixed blur-[1px]"></div>
-    <div class="absolute top-0 left-0 w-full h-screen">
+    <div class="background w-full h-[100lvh]">
+      <img src="../assets/images/hero_image.jpg" class="h-screen object-cover fixed top-0 left-0 z-[-1]" alt="background">
       <img src="../assets/images/compass.svg" class="icon-right absolute rotate-[20deg] bottom-[50px] right-[-120px] w-[300px] md:bottom-[100px] md:w-[500px] z-[1]" data-factor="0.4" alt="compass">
       <img src="../assets/images/calculator.svg" class="icon-right absolute bottom-[-50px] right-[-70px] w-[220px] md:w-[400px] z-[2]" data-factor="0.7" alt="calculator">
       <img src="../assets/images/ruler.svg" class="icon-left absolute rotate-[80deg] bottom-[-30px]  left-[-30px] w-[300px] md:w-[500px] z-[3]" data-factor="0.8" alt="ruler">
@@ -33,13 +33,13 @@
 </template>
 
 <style scoped>
-  .background {
+  /* .background {
     background-image: url('../assets/images/hero_image.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     height: 100lvh;
-  }
+  } */
 
   h1 {
     -webkit-text-stroke: 2px black;
