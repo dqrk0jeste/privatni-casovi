@@ -14,21 +14,21 @@
           <h2 class="text-4xl font-bold text-yellow-300">ЧАСОВИ</h2>
           <img src="../assets/images/logo.svg" class="w-10" alt="logo">
         </div>
-        <p class="text-white text-center">Услуге приватних часова из разних предмета</p>
+        <p class="text-white text-center">Услуге приватних часова у Краљеву.</p>
       </div>
       <div class="flex flex-col items-center text-white">
-        <h3 class="text-2xl font-bold mb-3 text-yellow-300">Контактирајте нас:</h3>
+        <h3 class="text-2xl font-bold mb-3 text-yellow-300">Контактирајте нас</h3>
+        <div class="flex items-center gap-1">
+          <i class='bx bxl-instagram text-black'></i>
+          <a href="https://instagram.com/privatni.casovi.kraljevo?igshid=OGQ5ZDc2ODk2ZA==" target="_blank" class="hover:underline">@privatni.casovi.kraljevo</a>
+        </div>
         <div class="flex items-center gap-1">
           <i class='bx bxl-gmail text-black'></i>
-          <a href="mailto:privatnicasovikraljevo@gmail.com" class="hover:underline">privatnicasovikraljevo@gmail.com</a>
+          <a href="mailto:privatnicasovikraljevo@gmail.com" target="_blank" class="hover:underline">privatnicasovikraljevo@gmail.com</a>
         </div>
         <div class="flex items-center gap-1">
           <i class='bx bxs-phone text-black'></i>
-          <a href="tel:0649769196" class="hover:underline">064 976 9196 - Дарко</a>
-        </div>
-        <div class="flex items-center gap-1">
-          <i class='bx bxs-phone text-black'></i>
-          <a href="tel:0644408747" class="hover:underline">064 440 8747 - Јаков</a>
+          <a href="tel:0644408747" target="_blank" class="hover:underline">064 440 8747 - Јаков</a>
         </div>
       </div>
     </div>
