@@ -1,4 +1,6 @@
 <script setup>
+  import emailjs from '@emailjs/browser'
+
   const imeIPrezime = ref('')
   const brojTelefona = ref('')
   const skola = ref('')
@@ -61,6 +63,7 @@
     if(error.value) {
       formError.value = error.value
     } else {
+      sendEmail()
       resetFields()
       formSubmitted.value = true
     }
@@ -82,6 +85,16 @@
     nastavnik.value = '0'
     napomena.value = ''
   }
+
+  function sendEmail() {
+      emailjs.send(
+        'service_zhd5fx3',
+        'template_rgt7phw',
+        {
+          ime: imeIPrezime.value
+        },
+        'L0-NCbualAjZlm8B1')
+    }
 
   const nastavnikovaNapomena = computed(() => {
     if(nastavnik.value !== '0' && nastavnici.value) {
